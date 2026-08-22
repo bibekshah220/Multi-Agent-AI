@@ -1,11 +1,10 @@
-from lanchain.tools import tool
-import requrest
+from langchain.tools import tool
+import requests
 from bs4 import BeautifulSoup
 from tavily import TavilyClient
 import os
 from dotenv import load_dotenv
 load_dotenv()
-from rich import print
 
 tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
 
@@ -16,7 +15,8 @@ def web_search(query: str) -> str:
     Return the title, URL, and snippet for each relevant result.
     """
     try:
-        results = tavily.search(query-query,max_results=5)
+        response = tavily.search(query=query, max_results=5)
+        results = response.get("results", [])
 
         if not results:
             return "No results found."
