@@ -1,0 +1,34 @@
+# Core LangChain
+langchain
+langchain-core
+langchain-community
+langchain-openai
+
+# Agents / Graph-based agent orchestration
+langgraph
+
+# OpenAI
+openai
+
+# Web Search
+tavily-python
+
+# Web Scraping / HTML Parsing
+beautifulsoup4
+requests
+
+# Environment Variables
+python-dotenv
+
+# HTTP / Async support
+httpx
+aiohttp
+
+# Data validation / schemas
+pydantic
+
+# Optional: useful utilities for research pipelines
+tenacity
+
+# Development
+ipython
