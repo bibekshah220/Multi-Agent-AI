@@ -39,5 +39,24 @@ def run_reserch_pipeline(topic: str) -> dict:
     
         # Combine gathered material for the writer and critic.
         combined_research = f"{state['research']}\n\nDeeper reading:\n{state['reading']}"
-    
-      
+      # Step 3: Writer chain produces the final report.
+            print("\n=== STEP 3: WRITER CHAIN ===")
+            state["report"] = writer_chain.invoke(
+                {"topic": topic, "research": combined_research}
+            )
+            print(state["report"])
+        
+            # Step 4: Critic chain evaluates and scores the report.
+                       print("\n=== STEP 4: CRITIC CHAIN ===")
+                       state["critique"] = critic_chain.invoke(
+                           {"topic": topic, "research": combined_research}
+                       )
+                       print(state["critique"])
+                   
+                       return state
+                   
+                   
+                   if __name__ == "__main__":
+                       run_reserch_pipeline("The latest developments in multi-agent AI systems")
+                   
+                 
