@@ -27,4 +27,17 @@ def run_reserch_pipeline(topic: str) -> dict:
     )
     print(state["research"])
 
+    # Step 2: Reader agent reads sources in depth to enrich the research.
+        print("\n=== STEP 2: READER AGENT ===")
+        reader_agent = build_reader_agent()
+        state["reading"] = _run_agent(
+            reader_agent,
+            "Read the most relevant URLs from the research below and extract additional "
+            f"detail and context.\n\nResearch:\n{state['research']}",
+        )
+        print(state["reading"])
     
+        # Combine gathered material for the writer and critic.
+        combined_research = f"{state['research']}\n\nDeeper reading:\n{state['reading']}"
+    
+      
