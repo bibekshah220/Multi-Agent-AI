@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-llm = ChatGoogleGenerativeAI(model="gemini-3.6-flash")
+llm = ChatGoogleGenerativeAI(model="gemini-3.6-flash",temperature=0)
 
 SYSTEM_PROMPT = (
     "You are a helpful research assistant. "
