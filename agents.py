@@ -47,6 +47,27 @@ Be detailed, factual and professional."""),
 
 writer_chain = writer_prompt | llm | StrOutputParser()
 
+#critic_chain
+critic_prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a critical research analyst. Evaluate the quality and reliability of the research provided."),  
+    ("human", """Critically evaluate the research below.
 
+Topic: {topic}
 
+Research Gathered:
+{research}
 
+Assess the research on:
+- Accuracy and factual correctness
+- Completeness (are important aspects missing?)
+- Source reliability (are the URLs credible?)
+- Bias or unsupported claims
+
+Then provide:
+- A numeric score from 1 to 10 (formatted as "Score: X/10")
+- A short overall verdict (Strong / Adequate / Weak)
+- Specific gaps or issues found
+- Concrete suggestions to improve the research."""),
+])
+
+critic_chain = critic_prompt | llm | StrOutputParser()
