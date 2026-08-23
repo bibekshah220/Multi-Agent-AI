@@ -9,4 +9,7 @@ def _extract_text(content) -> str:
         )
     return content
 
+def _run_agent(agent, prompt: str) -> str:
+    result = agent.invoke({"messages": [("user", prompt)]})
+    return _extract_text(result["messages"][-1].content)
 
