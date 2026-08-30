@@ -10,7 +10,11 @@ def _extract_text(content) -> str:
     return content
 
 def _run_agent(agent, prompt: str) -> str:
-    result = agent.invoke({"messages": [("user", prompt)]})
+    # recursion_limit caps tool-call iterations so the agent can't loop forever.
+    result = agent.invoke(
+        {"messages": [("user", prompt)]},
+        config={"recursion_limit": 12},
+    )
     return _extract_text(result["messages"][-1].content)
 
 
